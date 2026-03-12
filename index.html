@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TheQuantDefense — Quantum-Safe Security for Critical Infrastructure</title>
+    <meta name="description" content="Post-quantum cryptography and quantum optimization solutions for defense, aerospace, and government. Preparing critical infrastructure for the quantum threat landscape.">
+    <meta name="keywords" content="post-quantum cryptography, quantum-safe, quantum defense, PQC, quantum security, FIPS, NIST">
+    <meta name="author" content="TheQuantAI">
+
+    <meta property="og:title" content="TheQuantDefense — Quantum-Safe Security">
+    <meta property="og:description" content="Post-quantum cryptography solutions for defense, aerospace, and government.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://thequantdefense.com">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@TheQuantAI">
+    <meta name="twitter:title" content="TheQuantDefense — Quantum-Safe Security">
+
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page">
+        <!-- Ambient background -->
+        <div class="bg-effects">
+            <div class="bg-grid"></div>
+            <div class="bg-glow bg-glow-1"></div>
+            <div class="bg-glow bg-glow-2"></div>
+            <div class="shield-float">
+                <img src="assets/logo-thequantdefense.svg" alt="" width="200" height="200">
+            </div>
+        </div>
+
+        <!-- Nav bar -->
+        <nav class="nav-mini">
+            <a href="https://thequantai.in" class="nav-back">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+                <span>TheQuantAI</span>
+            </a>
+        </nav>
+
+        <!-- Content -->
+        <main class="content">
+            <div class="badge">🛡️ Coming Q4 2026</div>
+            <h1>Quantum-Safe Security<br>for <span class="accent">Critical Infrastructure</span></h1>
+            <p class="subtitle">TheQuantDefense is building post-quantum cryptography solutions and quantum optimization tools for defense, aerospace, and government agencies. Preparing the world's critical systems for the quantum threat landscape.</p>
+
+            <div class="pillars">
+                <div class="pillar">
+                    <div class="pillar-icon">🔐</div>
+                    <h3>Post-Quantum Cryptography</h3>
+                    <p>NIST-standardized PQC algorithms. Migration tooling for existing infrastructure. FIPS-compliant implementations.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">📡</div>
+                    <h3>Quantum-Safe Communications</h3>
+                    <p>Hybrid classical-quantum key exchange. Quantum-resistant TLS. Secure channel protocols for classified networks.</p>
+                </div>
+                <div class="pillar">
+                    <div class="pillar-icon">⚙️</div>
+                    <h3>Quantum Optimization</h3>
+                    <p>Logistics, scheduling, and resource allocation powered by quantum algorithms. Faster solutions for NP-hard defense problems.</p>
+                </div>
+            </div>
+
+            <!-- Waitlist form -->
+            <div class="waitlist">
+                <h2>Get early access</h2>
+                <p>We're selecting a limited number of defense and government partners for our private beta program.</p>
+                <form class="waitlist-form" id="waitlistForm">
+                    <input type="email" placeholder="your-email@organization.gov" required aria-label="Email address">
+                    <button type="submit" class="btn-submit">Request Access</button>
+                </form>
+                <p class="waitlist-note">Or reach out directly: <a href="mailto:defense@thequantai.in">defense@thequantai.in</a></p>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer-mini">
+            <p>&copy; 2026 <a href="https://thequantai.in">TheQuantAI</a> &middot; A division of TheQuantAI &middot; Bengaluru, India</p>
+        </footer>
+    </div>
+
+    <script>
+        // Waitlist form handler (static — logs to console, shows confirmation)
+        document.getElementById("waitlistForm")?.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const email = this.querySelector("input").value;
+            const btn = this.querySelector("button");
+            btn.textContent = "✓ Request Sent";
+            btn.disabled = true;
+            btn.style.opacity = "0.7";
+            // In production, this would POST to an API
+            console.log("Waitlist signup:", email);
+            setTimeout(() => {
+                btn.textContent = "Request Access";
+                btn.disabled = false;
+                btn.style.opacity = "1";
+                this.querySelector("input").value = "";
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
