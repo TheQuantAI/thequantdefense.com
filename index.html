@@ -12,16 +12,23 @@
     <meta property="og:description" content="Post-quantum cryptography solutions for defense, aerospace, and government.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://thequantdefense.com">
+    <meta property="og:image" content="https://thequantdefense.com/assets/og-image.png">
+    <meta property="og:image:alt" content="TheQuantDefense — Quantum-safe security for critical infrastructure">
 
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@TheQuantAI">
     <meta name="twitter:title" content="TheQuantDefense — Quantum-Safe Security">
+    <meta name="twitter:image" content="https://thequantdefense.com/assets/og-image.png">
+
+    <!-- Search Console: replace content once token is generated -->
+    <meta name="google-site-verification" content="REPLACE_WITH_SEARCH_CONSOLE_TOKEN">
 
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <script defer data-domain="thequantdefense.com" src="https://plausible.io/js/script.js"></script>
 </head>
 <body>
     <div class="page">
@@ -71,7 +78,9 @@
             <div class="waitlist">
                 <h2>Get early access</h2>
                 <p>We're selecting a limited number of defense and government partners for our private beta program.</p>
-                <form class="waitlist-form" id="waitlistForm">
+                <form class="waitlist-form" id="waitlistForm" method="POST" action="https://formspree.io/f/REPLACE_WITH_FORM_ID">
+                    <input type="hidden" name="_subject" value="TheQuantDefense waitlist request">
+                    <input type="hidden" name="_source" value="thequantdefense.com">
                     <input type="email" placeholder="your-email@organization.gov" required aria-label="Email address">
                     <button type="submit" class="btn-submit">Request Access</button>
                 </form>
@@ -86,22 +95,49 @@
     </div>
 
     <script>
-        // Waitlist form handler (static — logs to console, shows confirmation)
+        // Waitlist form handler (Formspree/Supabase-ready via form action)
         document.getElementById("waitlistForm")?.addEventListener("submit", function(e) {
             e.preventDefault();
-            const email = this.querySelector("input").value;
+            const emailInput = this.querySelector("input[type='email']");
+            const email = emailInput.value;
             const btn = this.querySelector("button");
+            const endpoint = this.getAttribute("action");
+
+            if (!endpoint || endpoint.includes("REPLACE_WITH_FORM_ID")) {
+                alert("Waitlist backend not configured yet. Replace REPLACE_WITH_FORM_ID in index.html with your Formspree form id.");
+                return;
+            }
+
             btn.textContent = "✓ Request Sent";
             btn.disabled = true;
             btn.style.opacity = "0.7";
-            // In production, this would POST to an API
-            console.log("Waitlist signup:", email);
-            setTimeout(() => {
-                btn.textContent = "Request Access";
+
+            fetch(endpoint, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Accept": "application/json"
+                },
+                body: JSON.stringify({
+                    email,
+                    source: "thequantdefense.com"
+                })
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error("Request failed");
+                }
+                btn.textContent = "✓ Request Sent";
+                emailInput.value = "";
+                setTimeout(() => {
+                    btn.textContent = "Request Access";
+                    btn.disabled = false;
+                    btn.style.opacity = "1";
+                }, 2500);
+            }).catch(() => {
+                btn.textContent = "Try Again";
                 btn.disabled = false;
                 btn.style.opacity = "1";
-                this.querySelector("input").value = "";
-            }, 3000);
+            });
         });
     </script>
 </body>
