@@ -75,7 +75,7 @@
             <div class="waitlist">
                 <h2>Get early access</h2>
                 <p>We're selecting a limited number of defense and government partners for our private beta program.</p>
-                <form class="waitlist-form" id="waitlistForm" method="POST" action="https://formspree.io/f/REPLACE_WITH_FORM_ID">
+                <form class="waitlist-form" id="waitlistForm" method="POST" action="https://formspree.io/f/xyknjanp">
                     <input type="hidden" name="_subject" value="TheQuantDefense waitlist request">
                     <input type="hidden" name="_source" value="thequantdefense.com">
                     <input type="email" placeholder="your-email@organization.gov" required aria-label="Email address">
@@ -100,8 +100,8 @@
             const btn = this.querySelector("button");
             const endpoint = this.getAttribute("action");
 
-            if (!endpoint || endpoint.includes("REPLACE_WITH_FORM_ID")) {
-                alert("Waitlist backend not configured yet. Replace REPLACE_WITH_FORM_ID in index.html with your Formspree form id.");
+            if (!endpoint) {
+                alert("Waitlist backend endpoint is missing. Please check form action in index.html.");
                 return;
             }
 
